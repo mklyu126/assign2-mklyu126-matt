@@ -7,6 +7,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import model.Animals;
+import model.BoardGames;
+import model.Figures;
+import model.Puzzles;
 import model.Toy;
 
 import view.AppMenu;
@@ -25,17 +29,18 @@ public AppManager() {
 	appMenu = new AppMenu();
 	loadData();
 	launchApplication();
+	
 }
 
 
 
 
 private void launchApplication() {
-
+		
 		
 		boolean flag = true;
 		int option;
-//		toy curr_player = null;
+
 		
 		while (flag) {
 			option = appMenu.showMainMenu();
@@ -57,7 +62,8 @@ private void launchApplication() {
 				addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
 				break;
 			case 3:
-				int serialNum = appMenu.promptSerialNum();
+				
+				serialNum = appMenu.promptSerialNum();
 				removeToy(serialNum);
 			case 4:
 				try {
@@ -91,7 +97,6 @@ private void Search() {
 		searchByType(toyType);
 		break;
 	case 4:	
-		
 		break;
 		
 	}
@@ -171,6 +176,7 @@ private void loadData() {
 	File db = new File(FILE_PATH);
 	String currentLine;
 	String[] splittedLine;
+
 	
 	if (db.exists()) {
 		Scanner fileReader = null;
@@ -178,7 +184,7 @@ private void loadData() {
 			
 			fileReader = new Scanner(db);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -186,16 +192,45 @@ private void loadData() {
 			
 			currentLine = fileReader.nextLine();
 			splittedLine = currentLine.split(";");
-//			if serial num starts with 0 or 1 = figures
-			// if serial num starts with 2 or 3 = Animals
-//			Toy t = new Toy(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
-//					Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]));
-			
-				
+			int serialNum= Integer.parseInt(splittedLine[0]);
+			int firstDigit = Integer.parseInt(Integer.toString(serialNum).substring(0,1));
+			if (firstDigit == (0 | 1)) {
+				Figures f = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
+				toys.add(f);
 			}
 			
+			else if (firstDigit == (2|3)) {
+				Animals a = new Animals(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip(), splittedLine[7].strip());
+				toys.add(a);
+			}
+			
+			else if (firstDigit == (4|5|6)) {
+				Puzzles p = new Puzzles(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
+				toys.add(p);
+			}
+			
+			else if (firstDigit == (7|8|9)) {
+				BoardGames b = new BoardGames(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), Integer.parseInt(splittedLine[6]), splittedLine[7].strip());
+				toys.add(b);
+			}
+				fileReader.close();
+				
 		}
+		// if serialNum starts with 0 or 1 -> load into figures object
+		
+		
+//		if serial num starts with 0 or 1 = figures
+		// if serial num starts with 2 or 3 = Animals
+		// if is figure load into figure object 
+//		Toy t = new Toy(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+//				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]));
+	
 	}
 	
+}
 }
 

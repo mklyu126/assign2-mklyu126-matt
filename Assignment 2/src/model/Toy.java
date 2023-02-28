@@ -9,16 +9,16 @@ public abstract class Toy {
 	protected int minimumAge;
 	
 	
-	public Toy(int serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
-//		super();
-		this.serialNum = serialNum;
-		this.name = name;
-		this.brand = brand;
-		this.price = price;
-		this.availableCount = availableCount;
-		this.minimumAge = minimumAge;
+public Toy(int serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
+	this.serialNum = serialNum;
+    this.name = name;
+	this.brand = brand;
+	this.price = price;
+	this.availableCount = availableCount;
+	this.minimumAge = minimumAge;	
 	}
-	public int getSerialNum() {
+	
+public int getSerialNum() {
 		return serialNum;
 	}
 	public void setSerialNum(int serialNum) {

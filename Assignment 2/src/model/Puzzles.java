@@ -2,7 +2,8 @@ package model;
 
 public class Puzzles extends Toy {
 	
-	public Puzzles(String puzzleType) {
+	public Puzzles(int serialNum, String name, String brand, double price, int availableCount, int minimumAge, String puzzleType) {
+		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.puzzleType = puzzleType;
 	}
 	private String puzzleType;

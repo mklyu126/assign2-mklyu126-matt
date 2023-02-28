@@ -50,54 +50,94 @@ public int showSubMenu() {
 }
 public int promptSerialNum() {
 	System.out.println("Enter a serial number here: ");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter a serial number here: ");
+	}
 	int serialNum = input.nextInt();
 	return serialNum;
 }
 
 public String promptToyName() {
 	System.out.println("Enter a toy name here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter a toy name here: ");
+	}
 	String toyName = input.nextLine().trim();
 	return toyName;
+}
+public String promptToyBrand() {
+	System.out.println("Enter the toy brand here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter the toy brand here: ");
+	}
+	String toyBrand = input.nextLine().trim();
+	return toyBrand;
 }
 
 public String promptToyType() {
 	System.out.println("Enter a toy type here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter a toy type here: ");
+	}
 	String toyType = input.nextLine().trim();
 	return toyType;
 }
 
-public String promptToyBrand() {
-	System.out.println("Enter the toy brand here: ");
-	String toyBrand = input.nextLine().trim();
-	return toyBrand;
-}
 public int promptToyPrice() {
 	System.out.println("Enter the toy price here: ");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter a toy price here: ");
+	}
 	int toyPrice = input.nextInt();
 	return toyPrice;
 }
 public int promptNumAvailable() {
 	System.out.println("Enter the available count here: ");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter the available count here: ");
+	}
 	int numAvailable = input.nextInt();
 	return numAvailable;
 }
 public int promptAppropriateAge() {
 	System.out.println("Enter the appropriate age here: ");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter the appropriate here: ");
+	}
 	int appropriateAge = input.nextInt();
 	return appropriateAge;
 }
 public int promptMinNumPlayers() {
 	System.out.println("Enter the minimum number of players here");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter the minimum number of players here: ");
+	}
 	int minNumPlayers = input.nextInt();
 	return minNumPlayers;
 }
 public int promptMaxNumPlayers() {
 	System.out.println("Enter the maximum number of players here");
+	while(!input.hasNextInt()) {
+		input.nextLine();
+		System.out.print("Enter the maximum number of players here: ");
+	}
 	int maxNumPlayers = input.nextInt();
 	return maxNumPlayers;
 }
 public String promptDesignerNames() {
-	System.out.println("Enter designer names here, use '.' to seperate names if there is more than one");
+	System.out.println("Enter designer names here, use '.' to seperate names if there is more than one: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter designer names here, use '.' to seperate names if there is more than one: ");
+	}
 	String designerNames = input.nextLine().trim();
 	return designerNames;
 }

@@ -2,7 +2,8 @@ package model;
 
 public class BoardGames extends Toy {
 
-	public BoardGames(int numOfPlayers, String nameDesigners) {
+	public BoardGames(int serialNum, String name, String brand, double price, int availableCount, int minimumAge, int numOfPlayers, String nameDesigners) {
+		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.numOfPlayers = numOfPlayers;
 		this.nameDesigners = nameDesigners;
 	}
@@ -23,7 +24,7 @@ public class BoardGames extends Toy {
 	}
 	@Override
 	public String toString() {
-		return "Number of Players: " + numOfPlayers + "Name of Designers: " + nameDesigners;
+		return super.toString() + "Number of Players: " + numOfPlayers + "Name of Designers: " + nameDesigners;
 	}
 
 }
