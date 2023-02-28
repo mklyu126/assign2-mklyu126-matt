@@ -21,6 +21,9 @@ public class BoardGames extends Toy {
 	public void setNameDesigners(String nameDesigners) {
 		this.nameDesigners = nameDesigners;
 	}
-	
+	@Override
+	public String toString() {
+		return "Number of Players: " + numOfPlayers + "Name of Designers: " + nameDesigners;
+	}
 
 }
