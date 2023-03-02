@@ -18,6 +18,11 @@ public class Figures extends Toy {
 
 	@Override
 	public String toString() {
-		return super.toString()+ "Classification" + classification;
+		return super.toString()+ "Classification: " + classification;
+	}
+	
+	@Override 
+	public String format() {
+		return super.format() + classification;
 	}
 }

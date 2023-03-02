@@ -16,6 +16,16 @@ public class Puzzles extends Toy {
 		this.puzzleType = puzzleType;
 	}
 	
+	@Override 
+	public String toString() {
+		return super.toString() + "Puzzle Type: " + puzzleType;
+	}
+	
+	@Override 
+	public String format() {
+		return super.format() + puzzleType;
+	}
+	
 
 	
 }

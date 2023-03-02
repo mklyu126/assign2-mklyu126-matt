@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import exceptions.NegativeInputPrice;
+import exceptions.TooManyMinNumPlayers;
 import model.Animals;
 import model.BoardGames;
 import model.Figures;
@@ -28,14 +30,19 @@ public AppManager() {
 	toys = new ArrayList<>();
 	appMenu = new AppMenu();
 	loadData();
-	launchApplication();
+	try {
+		launchApplication();
+	} catch (NegativeInputPrice e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 }
 
 
 
 
-private void launchApplication() {
+private void launchApplication() throws NegativeInputPrice {
 		
 		
 		boolean flag = true;
@@ -52,26 +59,27 @@ private void launchApplication() {
 				int serialNum = appMenu.promptSerialNum();
 				String toyName = appMenu.promptToyName();
 				String toyBrand = appMenu.promptToyBrand();
-				int toyPrice = appMenu.promptToyPrice();
+				double toyPrice = appMenu.promptToyPrice();
 				int availableCount = appMenu.promptNumAvailable();
 				int appropriateAge = appMenu.promptAppropriateAge();
 				int minNumPlayers = appMenu.promptMinNumPlayers();
 				int maxNumPlayers = appMenu.promptMaxNumPlayers();
 				String designerNames = appMenu.promptDesignerNames();
 				
-				addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
-				break;
+				
+				try {
+					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			case 3:
 				
 				serialNum = appMenu.promptSerialNum();
 				removeToy(serialNum);
 			case 4:
-				try {
-					Save();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
+				Save();
 				flag = false;
 			}
 		}
@@ -102,9 +110,17 @@ private void Search() {
 	}
 }
 
-private void Save() throws IOException {
+private void Save(){
 	File db = new File(FILE_PATH);
-	PrintWriter pw = new PrintWriter(db);
+	PrintWriter pw = null;
+	
+	
+	try {
+		pw = new PrintWriter(db);
+	} catch (FileNotFoundException e) {
+		System.out.println("Data cannot be saved as the file cannot be found");
+		e.printStackTrace();
+	}
 	System.out.println("Saving...");
 	System.out.println("Save Complete!");
 	
@@ -162,10 +178,13 @@ private void removeToy(int serialNum) {
 
 
 private void addNewToy
-(int serialNum, String toyName, String toyBrand, int toyPrice, int availableCount, 
-int appropriateAge, int minNumPlayers, int maxNumPlayers, String designerNames) 
+(int serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
+int appropriateAge, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
 {
-	// TODO Auto-generated method stub
+	if (toyPrice < 0)
+		throw new NegativeInputPrice();
+	if (minNumPlayers > maxNumPlayers)
+		throw new TooManyMinNumPlayers();
 	
 }
 
@@ -184,7 +203,7 @@ private void loadData() {
 			
 			fileReader = new Scanner(db);
 		} catch (FileNotFoundException e) {
-			
+			System.out.println("Error: File not found");
 			e.printStackTrace();
 		}
 		
@@ -194,6 +213,7 @@ private void loadData() {
 			splittedLine = currentLine.split(";");
 			int serialNum= Integer.parseInt(splittedLine[0]);
 			int firstDigit = Integer.parseInt(Integer.toString(serialNum).substring(0,1));
+			
 			if (firstDigit == (0 | 1)) {
 				Figures f = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());

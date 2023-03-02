@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import exceptions.NegativeInputPrice;
+
 public class AppMenu {
 Scanner input;
 
@@ -51,22 +53,15 @@ public int showSubMenu() {
 public int promptSerialNum() {
 	System.out.println("Enter a serial number here: ");
 	while(!input.hasNextInt()) {
-		input.nextLine();
+		input.nextInt();
 		System.out.print("Enter a serial number here: ");
 	}
 	int serialNum = input.nextInt();
+	input.nextLine();
+	
 	return serialNum;
 }
 
-public String promptToyName() {
-	System.out.println("Enter a toy name here: ");
-	while(!input.hasNextLine()) {
-		input.nextLine();
-		System.out.print("Enter a toy name here: ");
-	}
-	String toyName = input.nextLine().trim();
-	return toyName;
-}
 public String promptToyBrand() {
 	System.out.println("Enter the toy brand here: ");
 	while(!input.hasNextLine()) {
@@ -75,6 +70,15 @@ public String promptToyBrand() {
 	}
 	String toyBrand = input.nextLine().trim();
 	return toyBrand;
+}
+public String promptToyName() {
+	System.out.println("Enter a toy name here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter a toy name here: ");
+	}
+	String toyName = input.nextLine().trim();
+	return toyName;
 }
 
 public String promptToyType() {
@@ -87,13 +91,15 @@ public String promptToyType() {
 	return toyType;
 }
 
-public int promptToyPrice() {
+public double promptToyPrice() throws NegativeInputPrice {
 	System.out.println("Enter the toy price here: ");
-	while(!input.hasNextInt()) {
+	while(!input.hasNextDouble()) {
 		input.nextLine();
 		System.out.print("Enter a toy price here: ");
 	}
-	int toyPrice = input.nextInt();
+	double toyPrice = input.nextDouble();
+	if (toyPrice < 0)
+		throw new NegativeInputPrice();
 	return toyPrice;
 }
 public int promptNumAvailable() {
@@ -133,13 +139,14 @@ public int promptMaxNumPlayers() {
 	return maxNumPlayers;
 }
 public String promptDesignerNames() {
-	System.out.println("Enter designer names here, use '.' to seperate names if there is more than one: ");
+	System.out.println("Enter designer names here, use ',' to seperate names if there is more than one: ");
 	while(!input.hasNextLine()) {
 		input.nextLine();
-		System.out.print("Enter designer names here, use '.' to seperate names if there is more than one: ");
+		System.out.print("Enter designer names here, use ',' to seperate names if there is more than one: ");
 	}
 	String designerNames = input.nextLine().trim();
 	return designerNames;
 }
+
 }
 
