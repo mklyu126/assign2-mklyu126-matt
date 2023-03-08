@@ -2,7 +2,6 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,12 +16,22 @@ import model.Toy;
 
 import view.AppMenu;
 
+/**
+ *The brain of everything, loads toys.txt into an arraylist, launches application and menus.
+ * @author Max, Matt
+ *
+ */
 public class AppManager {
 
 	private final String FILE_PATH = "res/toys.txt";
 	AppMenu appMenu;
 	ArrayList<Toy> toys;
-
+/**
+ * Initalizes the AppManager constructor, creates a new arrayList called toys.
+ * Initializes a new instance of AppMenu called appMenu.
+ * Calls loadData() to load data from toys.txt into the toys arrayList.
+ * Catches any errors if user inputs a negative price for toy price using a custom exception class.
+ */
 
 
 
@@ -33,7 +42,7 @@ public AppManager() {
 	try {
 		launchApplication();
 	} catch (NegativeInputPrice e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}
 	
@@ -41,7 +50,11 @@ public AppManager() {
 
 
 
-
+/**
+ * Initializes application by calling showMainMenu from appMenu.
+ * Goes into search function, add new toy, remove toy or save and exit depending on user input.
+ * @throws NegativeInputPrice
+ */
 private void launchApplication() throws NegativeInputPrice {
 		
 		
@@ -70,7 +83,7 @@ private void launchApplication() throws NegativeInputPrice {
 				try {
 					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					System.out.println("A problem occured");
 					e.printStackTrace();
 				}
 				
@@ -87,7 +100,11 @@ private void launchApplication() throws NegativeInputPrice {
 		
 				
 			
-	
+	/**
+	 * If user enters 1 at the main menu, the SubMenu is called from appMenu.
+	 * Can search based on serialNum, toyName, or toyType, depending on user input.
+	 * If user enters 4, program exits back to the main menu.
+	 */
 private void Search() {
 	int option = appMenu.showSubMenu();
 	
@@ -109,7 +126,10 @@ private void Search() {
 		
 	}
 }
-
+/**
+ * Prints new data into the toys.txt file using the format method.
+ * Toy subclasses overload format method depending on toy type.
+ */
 private void Save(){
 	File db = new File(FILE_PATH);
 	PrintWriter pw = null;
@@ -129,6 +149,7 @@ private void Save(){
 	
 	for (Toy t1: toys) {
 		pw.println(t1.format());
+		
 		
 	}
 	
@@ -190,7 +211,10 @@ int appropriateAge, int minNumPlayers, int maxNumPlayers, String designerNames) 
 
 
 
-
+/**
+ * Uses a scanner and while loop to load data from toys.txt file into the toys array.
+ * Depending on the first number of the serial number, different types of toys are created by splitting data.
+ */
 private void loadData() {
 	File db = new File(FILE_PATH);
 	String currentLine;
@@ -212,12 +236,14 @@ private void loadData() {
 			currentLine = fileReader.nextLine();
 			splittedLine = currentLine.split(";");
 			int serialNum= Integer.parseInt(splittedLine[0]);
+			
 			int firstDigit = Integer.parseInt(Integer.toString(serialNum).substring(0,1));
 			
 			if (firstDigit == (0 | 1)) {
 				Figures f = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(f);
+				
 			}
 			
 			else if (firstDigit == (2|3)) {

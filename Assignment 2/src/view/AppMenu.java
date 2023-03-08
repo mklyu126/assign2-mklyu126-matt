@@ -3,7 +3,11 @@ package view;
 import java.util.Scanner;
 
 import exceptions.NegativeInputPrice;
-
+/**
+ * Starts user input 
+ * @author Max
+ *
+ */
 public class AppMenu {
 Scanner input;
 
@@ -11,7 +15,12 @@ Scanner input;
 public AppMenu() {
 	input = new Scanner(System.in);
 }
-
+/**
+ * Prints main menu to user and prompts them for their choice.
+ * Validates input to ensure a valid integer is given.
+ * 
+ * @return the user's choice in Int form.
+ */
 public int showMainMenu() {
 	System.out.println("************************************");
 	System.out.println("*      WELCOME TO TOYS R US        *");
@@ -35,7 +44,11 @@ public int showMainMenu() {
 	input.nextLine();
 	return option;
 }
-
+/**
+ * Prints out sub menu to user, prompts them for their choice.
+ * Validates user input.
+ * @return user's choice in Int form.
+ */
 public int showSubMenu() {
 	System.out.println("Find Toys With:");
 	System.out.println("(1) Serial Number (SN)");
@@ -50,6 +63,11 @@ public int showSubMenu() {
 	int option = input.nextInt();
 	return option;
 }
+ /**
+  * Prompts user for serial number of toy.
+  * Validates input.
+  * @return user's toy's serial number.
+  */
 public int promptSerialNum() {
 	System.out.println("Enter a serial number here: ");
 	while(!input.hasNextInt()) {
@@ -61,7 +79,11 @@ public int promptSerialNum() {
 	
 	return serialNum;
 }
-
+/**
+ * Prompts user for brand of toy.
+ * Validates input.
+ * @return user's toy's brand.
+ */
 public String promptToyBrand() {
 	System.out.println("Enter the toy brand here: ");
 	while(!input.hasNextLine()) {
@@ -71,6 +93,11 @@ public String promptToyBrand() {
 	String toyBrand = input.nextLine().trim();
 	return toyBrand;
 }
+/**
+ * Prompts user for name of their toy.
+ * Validates input.
+ * @return user's toy's name.
+ */
 public String promptToyName() {
 	System.out.println("Enter a toy name here: ");
 	while(!input.hasNextLine()) {
@@ -80,7 +107,11 @@ public String promptToyName() {
 	String toyName = input.nextLine().trim();
 	return toyName;
 }
-
+/**
+ * Prompts user for type of their toy.
+ * Validates input.
+ * @return user's toy's type.
+ */
 public String promptToyType() {
 	System.out.println("Enter a toy type here: ");
 	while(!input.hasNextLine()) {
@@ -90,7 +121,11 @@ public String promptToyType() {
 	String toyType = input.nextLine().trim();
 	return toyType;
 }
-
+/**
+ * Prompts user for price of their toy.
+ * Validates input.
+ * @return user's toy's price.
+ */
 public double promptToyPrice() throws NegativeInputPrice {
 	System.out.println("Enter the toy price here: ");
 	while(!input.hasNextDouble()) {
@@ -102,6 +137,11 @@ public double promptToyPrice() throws NegativeInputPrice {
 		throw new NegativeInputPrice();
 	return toyPrice;
 }
+/**
+ * Prompts user for the number of available units of their toy.
+ * Validates input.
+ * @return user's toy's available units.
+ */
 public int promptNumAvailable() {
 	System.out.println("Enter the available count here: ");
 	while(!input.hasNextInt()) {
@@ -111,6 +151,11 @@ public int promptNumAvailable() {
 	int numAvailable = input.nextInt();
 	return numAvailable;
 }
+/**
+ * Prompts user for the appropriate age range of their toy.
+ * Validates input.
+ * @return user's toy's appropriate age range.
+ */
 public int promptAppropriateAge() {
 	System.out.println("Enter the appropriate age here: ");
 	while(!input.hasNextInt()) {
@@ -120,6 +165,11 @@ public int promptAppropriateAge() {
 	int appropriateAge = input.nextInt();
 	return appropriateAge;
 }
+/**
+ * Prompts user for minimum number of players of their toy.
+ * Validates input.
+ * @return user's toy's minimum number of players.
+ */
 public int promptMinNumPlayers() {
 	System.out.println("Enter the minimum number of players here");
 	while(!input.hasNextInt()) {
@@ -129,6 +179,11 @@ public int promptMinNumPlayers() {
 	int minNumPlayers = input.nextInt();
 	return minNumPlayers;
 }
+/**
+ * Prompts user for maximum number of players of their toy.
+ * Validates input.
+ * @return user's toy's maximum number of players.
+ */
 public int promptMaxNumPlayers() {
 	System.out.println("Enter the maximum number of players here");
 	while(!input.hasNextInt()) {
@@ -138,6 +193,11 @@ public int promptMaxNumPlayers() {
 	int maxNumPlayers = input.nextInt();
 	return maxNumPlayers;
 }
+/**
+ * Prompts user for designer names of their toy.
+ * Validates input.
+ * @return user's toy's designer names.
+ */
 public String promptDesignerNames() {
 	System.out.println("Enter designer names here, use ',' to seperate names if there is more than one: ");
 	while(!input.hasNextLine()) {

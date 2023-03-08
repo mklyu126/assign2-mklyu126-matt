@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * Child class of Toy.
+ * @author Max
+ *
+ */
 public class Animals extends Toy {
 
 	public Animals(int serialNum, String name, String brand, double price, int availableCount, int minimumAge, String material, String size) {

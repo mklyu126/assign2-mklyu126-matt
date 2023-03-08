@@ -13,7 +13,7 @@ import controller.AppManager;
 	 * @param args N/A
 	 * @throws Exception N/A
 	 */
-		public static void main(String[] args) throws Exception {
+		public static void main(String[] args) {
 			
 			
 			new AppManager();
