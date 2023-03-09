@@ -76,14 +76,16 @@ private void launchApplication() throws NegativeInputPrice {
 				String toyBrand = appMenu.promptToyBrand();
 				double toyPrice = appMenu.promptToyPrice();
 				int availableCount = appMenu.promptNumAvailable();
-				int appropriateAge = appMenu.promptAppropriateAge();
+				String minimumAge = appMenu.promptMinimumAge();
+				String maximumAge = appMenu.promptMaximumAge();
+				String ageRange = minimumAge +"-" + maximumAge;
 				int minNumPlayers = appMenu.promptMinNumPlayers();
 				int maxNumPlayers = appMenu.promptMaxNumPlayers();
 				String designerNames = appMenu.promptDesignerNames();
 				
 				
 				try { //problem code in try block, if any exceptions are met > moves into catch block.
-					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
+					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange, minNumPlayers, maxNumPlayers, designerNames);
 				} catch (Exception e) {
 					System.out.println("Error: ");
 					e.printStackTrace();
@@ -202,7 +204,7 @@ private void removeToy(int serialNum) {
 
 private void addNewToy
 (int serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
-int appropriateAge, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
+String ageRange, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
 {
 	if (toyPrice < 0) //If statements to catch exceptions that may occur
 		throw new NegativeInputPrice();
@@ -242,35 +244,43 @@ private void loadData() {
 			char firstDigit = serialNum.charAt(0);
 			int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
 			System.out.println(firstDigitInt);
-			if (firstDigitInt == (0 | 1)) {
+			if (firstDigitInt == 0 || firstDigitInt == 1) {
 				Figures f = new Figures(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(f);
 				
 			}
 			
-			else if (firstDigitInt == (2|3)) {
-				System.out.println("this is working");
+			else if (firstDigitInt == 2 || firstDigitInt == 3){
 				Animals a = new Animals(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip(), splittedLine[7].strip());
 				toys.add(a);
 			}
 			
-			else if (firstDigitInt == (4|5|6)) {
+			else if (firstDigitInt == 4 || firstDigitInt == 5 || firstDigitInt == 6) {
 				Puzzles p = new Puzzles(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(p);
 			}
 			
-			else if (firstDigit == (7|8|9)) {
+			else if (firstDigit == 7 || firstDigitInt == 8 || firstDigitInt ==9) {
+
+				String [] minMaxPlayers = splittedLine[6].split("-");
+				int minAge = Integer.parseInt(minMaxPlayers[0]);
+				int maxAge = Integer.parseInt(minMaxPlayers[1]);
+				
+
+				
 				BoardGames b = new BoardGames(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
-				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), Integer.parseInt(splittedLine[6]), splittedLine[7].strip());
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]),minAge, maxAge, splittedLine[7].strip());
 				toys.add(b);
 			}
 			
 			
 		}
+		
 		fileReader.close();
+		System.out.println(toys);
 		// if serialNum starts with 0 or 1 -> load into figures object
 		
 		

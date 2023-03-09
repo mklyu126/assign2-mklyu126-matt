@@ -38,7 +38,7 @@ public abstract class Toy {
 	 * @param brand of toy.
 	 * @param price of toy.
 	 * @param availableCount of toy.
-	 * @param minimumAge of toy.
+	 * @param Minimum age of toy.
 	 */
 public Toy(long serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
 	this.serialNum = serialNum;
@@ -119,7 +119,7 @@ public long getSerialNum() {
 	 * Toy getter method.
 	 * @return the minimum age.
 	 */
-	public int getMinimumAge() {
+	public int minimumAge() {
 		return minimumAge;
 	}
 	/**

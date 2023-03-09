@@ -156,14 +156,24 @@ public int promptNumAvailable() {
  * Validates input.
  * @return user's toy's appropriate age range.
  */
-public int promptAppropriateAge() {
-	System.out.println("Enter the appropriate age here: ");
-	while(!input.hasNextInt()) {
+public String promptMinimumAge() {
+	System.out.println("Enter the minimum age here : ");
+	while(!input.hasNextLine()) {
 		input.nextLine();
-		System.out.print("Enter the appropriate here: ");
+		System.out.print("Enter the minimum age here: ");
 	}
-	int appropriateAge = input.nextInt();
-	return appropriateAge;
+	String minimumAge = input.nextLine();
+	return minimumAge;
+}
+
+public String promptMaximumAge() {
+	System.out.println("Enter the maximum age here : ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter the maximum age here: ");
+	}
+	String maximumAge = input.nextLine();
+	return maximumAge;
 }
 /**
  * Prompts user for minimum number of players of their toy.

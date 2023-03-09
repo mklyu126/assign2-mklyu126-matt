@@ -2,19 +2,28 @@ package model;
 
 public class BoardGames extends Toy {
 
-	public BoardGames(long serialNum, String name, String brand, double price, int availableCount, int minimumAge, int numOfPlayers, String nameDesigners) {
+	public BoardGames(long serialNum, String name, String brand, double price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {
 		super(serialNum, name, brand, price, availableCount, minimumAge);
-		this.numOfPlayers = numOfPlayers;
+		this.minPlayers = minPlayers;
+		this.maxPlayers = maxPlayers;
 		this.nameDesigners = nameDesigners;
 	}
-	private int numOfPlayers;
+	private int minPlayers;
+	private int maxPlayers;
 	private String nameDesigners;
+	
 
-	public int getNumOfPlayers() {
-		return numOfPlayers;
+	public int getMinPlayers() {
+		return minPlayers;
 	}
-	public void setNumOfPlayers(int numOfPlayers) {
-		this.numOfPlayers = numOfPlayers;
+	public void setMinPlayers(int minPlayers) {
+		this.minPlayers = minPlayers;
+	}
+	public int getMaxPlayers() {
+		return maxPlayers;
+	}
+	public void setMaxPlayers(int maxPlayers) {
+		this.maxPlayers = maxPlayers;
 	}
 	public String getNameDesigners() {
 		return nameDesigners;
@@ -24,10 +33,10 @@ public class BoardGames extends Toy {
 	}
 	@Override
 	public String toString() {
-		return super.toString() + "Number of Players: " + numOfPlayers + "Name of Designers: " + nameDesigners;
+		return super.toString() + "Minimum Number of Players: " + minPlayers + "Maximum Number of Players " + maxPlayers + "Name of Designers: " + nameDesigners;
 	}
 	@Override 
 	public String format() {
-		return super.format() + numOfPlayers + nameDesigners;
+		return super.format() + minPlayers + maxPlayers + nameDesigners;
 	}
 }
