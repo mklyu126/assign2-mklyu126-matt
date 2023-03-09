@@ -243,7 +243,7 @@ private void loadData() {
 			int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
 			System.out.println(firstDigitInt);
 			if (firstDigitInt == (0 | 1)) {
-				Figures f = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Figures f = new Figures(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(f);
 				
@@ -251,19 +251,19 @@ private void loadData() {
 			
 			else if (firstDigitInt == (2|3)) {
 				System.out.println("this is working");
-				Animals a = new Animals(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Animals a = new Animals(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip(), splittedLine[7].strip());
 				toys.add(a);
 			}
 			
 			else if (firstDigitInt == (4|5|6)) {
-				Puzzles p = new Puzzles(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Puzzles p = new Puzzles(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(p);
 			}
 			
-			else if (firstDigit == ('7'|'8'|'9')) {
-				BoardGames b = new BoardGames(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+			else if (firstDigit == (7|8|9)) {
+				BoardGames b = new BoardGames(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), Integer.parseInt(splittedLine[6]), splittedLine[7].strip());
 				toys.add(b);
 			}

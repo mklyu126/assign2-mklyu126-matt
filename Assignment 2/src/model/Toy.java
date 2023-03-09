@@ -8,7 +8,7 @@ public abstract class Toy {
 	/**
 	 * Represents serial number of toy.
 	 */
-	private int serialNum;
+	private long serialNum;
 	/**
 	 * Represents name of the toy.
 	 */
@@ -40,7 +40,7 @@ public abstract class Toy {
 	 * @param availableCount of toy.
 	 * @param minimumAge of toy.
 	 */
-public Toy(int serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
+public Toy(long serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
 	this.serialNum = serialNum;
     this.name = name;
 	this.brand = brand;
@@ -53,14 +53,14 @@ public Toy(int serialNum, String name, String brand, double price, int available
  * Toy getter method 
  * @return the serial number.
  */
-public int getSerialNum() {
+public long getSerialNum() {
 		return serialNum;
 	}
 /**
  * Toy setter method.
  * @param serialNum of toy.
  */
-	public void setSerialNum(int serialNum) {
+	public void setSerialNum(long serialNum) {
 		this.serialNum = serialNum;
 	}
 	/**
