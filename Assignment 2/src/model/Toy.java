@@ -119,7 +119,7 @@ public long getSerialNum() {
 	 * Toy getter method.
 	 * @return the minimum age.
 	 */
-	public int minimumAge() {
+	public int getMinimumAge() {
 		return minimumAge;
 	}
 	/**
