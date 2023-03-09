@@ -27,7 +27,7 @@ public class AppManager {
 	AppMenu appMenu;
 	ArrayList<Toy> toys;
 /**
- * Initalizes the AppManager constructor, creates a new arrayList called toys.
+ * Initializes the AppManager constructor, creates a new arrayList called toys.
  * Initializes a new instance of AppMenu called appMenu.
  * Calls loadData() to load data from toys.txt into the toys arrayList.
  * Catches any errors if user inputs a negative price for toy price using a custom exception class.
@@ -39,11 +39,12 @@ public AppManager() {
 	toys = new ArrayList<>();
 	appMenu = new AppMenu();
 	loadData();
-	try {
+	try { //problem code, if user enters negative input price-> go into catch block 
 		launchApplication();
-	} catch (NegativeInputPrice e) {
-		
+	} catch (NegativeInputPrice e) { 
+		System.out.println("Error: Negative input price ");
 		e.printStackTrace();
+		
 	}
 	
 }
@@ -62,13 +63,14 @@ private void launchApplication() throws NegativeInputPrice {
 		int option;
 
 		
-		while (flag) {
+		while (flag) { //Perform the body of the loop while value of flag = true.
 			option = appMenu.showMainMenu();
 			switch(option) {
 			case 1:
 				Search();
 				break;
 			case 2:
+				//Store toy details in named variables
 				int serialNum = appMenu.promptSerialNum();
 				String toyName = appMenu.promptToyName();
 				String toyBrand = appMenu.promptToyBrand();
@@ -80,19 +82,19 @@ private void launchApplication() throws NegativeInputPrice {
 				String designerNames = appMenu.promptDesignerNames();
 				
 				
-				try {
+				try { //problem code in try block, if any exceptions are met > moves into catch block.
 					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, appropriateAge, minNumPlayers, maxNumPlayers, designerNames);
 				} catch (Exception e) {
-					System.out.println("A problem occured");
+					System.out.println("Error: ");
 					e.printStackTrace();
 				}
 				
 			case 3:
 				
-				serialNum = appMenu.promptSerialNum();
+				serialNum = appMenu.promptSerialNum(); //Prompts user for serial number, finds toy and removes it.
 				removeToy(serialNum);
 			case 4:
-				Save();
+				Save(); //Saves back into toys.txt file.
 				flag = false;
 			}
 		}
@@ -108,7 +110,7 @@ private void launchApplication() throws NegativeInputPrice {
 private void Search() {
 	int option = appMenu.showSubMenu();
 	
-	switch(option) {
+	switch(option) { //Switch/case based upon user choice (integers between 1 and 4)
 	case 1:
 		int serialNum = appMenu.promptSerialNum();
 		searchBySerialNum(serialNum);
@@ -135,8 +137,8 @@ private void Save(){
 	PrintWriter pw = null;
 	
 	
-	try {
-		pw = new PrintWriter(db);
+	try { // "Problem" code in try code, if file is not found, system prints a message and throws and exception
+		pw = new PrintWriter(db); 
 	} catch (FileNotFoundException e) {
 		System.out.println("Data cannot be saved as the file cannot be found");
 		e.printStackTrace();
@@ -147,7 +149,7 @@ private void Save(){
 	
 	
 	
-	for (Toy t1: toys) {
+	for (Toy t1: toys) {//Loops thru toys array and instantiates changes using the .format method.
 		pw.println(t1.format());
 		
 		
@@ -202,7 +204,7 @@ private void addNewToy
 (int serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
 int appropriateAge, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
 {
-	if (toyPrice < 0)
+	if (toyPrice < 0) //If statements to catch exceptions that may occur
 		throw new NegativeInputPrice();
 	if (minNumPlayers > maxNumPlayers)
 		throw new TooManyMinNumPlayers();
@@ -225,7 +227,7 @@ private void loadData() {
 		Scanner fileReader = null;
 		try {
 			
-			fileReader = new Scanner(db);
+			fileReader = new Scanner(db);//If file is not found, system goes into the filenotfoundexception and prints to the user.
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found");
 			e.printStackTrace();
