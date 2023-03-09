@@ -23,7 +23,7 @@ import view.AppMenu;
  */
 public class AppManager {
 
-	private final String FILE_PATH = "res/toys.txt";
+	private final String FILE_PATH = "Assignment 2/res/toys.txt";
 	AppMenu appMenu;
 	ArrayList<Toy> toys;
 /**
@@ -37,8 +37,8 @@ public class AppManager {
 
 public AppManager() {
 	toys = new ArrayList<>();
-	appMenu = new AppMenu();
 	loadData();
+	appMenu = new AppMenu();
 	try { //problem code, if user enters negative input price-> go into catch block 
 		launchApplication();
 	} catch (NegativeInputPrice e) { 
@@ -237,37 +237,40 @@ private void loadData() {
 			
 			currentLine = fileReader.nextLine();
 			splittedLine = currentLine.split(";");
-			int serialNum= Integer.parseInt(splittedLine[0]);
+			String serialNum= (splittedLine[0].trim());
 			
-			int firstDigit = Integer.parseInt(Integer.toString(serialNum).substring(0,1));
-			
-			if (firstDigit == (0 | 1)) {
+			char firstDigit = serialNum.charAt(0);
+			int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
+			System.out.println(firstDigitInt);
+			if (firstDigitInt == (0 | 1)) {
 				Figures f = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(f);
 				
 			}
 			
-			else if (firstDigit == (2|3)) {
+			else if (firstDigitInt == (2|3)) {
+				System.out.println("this is working");
 				Animals a = new Animals(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip(), splittedLine[7].strip());
 				toys.add(a);
 			}
 			
-			else if (firstDigit == (4|5|6)) {
+			else if (firstDigitInt == (4|5|6)) {
 				Puzzles p = new Puzzles(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(p);
 			}
 			
-			else if (firstDigit == (7|8|9)) {
+			else if (firstDigit == ('7'|'8'|'9')) {
 				BoardGames b = new BoardGames(Integer.parseInt(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), Integer.parseInt(splittedLine[6]), splittedLine[7].strip());
 				toys.add(b);
 			}
-				fileReader.close();
-				
+			
+			
 		}
+		fileReader.close();
 		// if serialNum starts with 0 or 1 -> load into figures object
 		
 		
