@@ -143,6 +143,8 @@ public double promptToyPrice() throws NegativeInputPrice {
 		input.nextLine();
 		System.out.print("Enter a toy price here: ");
 	}
+
+	
 	double toyPrice = input.nextDouble();
 	if (toyPrice < 0)
 		throw new NegativeInputPrice();
@@ -159,6 +161,7 @@ public int promptNumAvailable() {
 		input.nextLine();
 		System.out.print("Enter the available count here: ");
 	}
+	input.nextLine();
 	int numAvailable = input.nextInt();
 	return numAvailable;
 }
@@ -173,6 +176,7 @@ public String promptMinimumAge() {
 		input.nextLine();
 		System.out.print("Enter the minimum age here: ");
 	}
+	input.nextLine();
 	String minimumAge = input.nextLine();
 	return minimumAge;
 }
@@ -183,6 +187,7 @@ public String promptMaximumAge() {
 		input.nextLine();
 		System.out.print("Enter the maximum age here: ");
 	}
+	input.nextLine();
 	String maximumAge = input.nextLine();
 	return maximumAge;
 }
@@ -192,11 +197,12 @@ public String promptMaximumAge() {
  * @return user's toy's minimum number of players.
  */
 public int promptMinNumPlayers() {
-	System.out.println("Enter the minimum number of players here");
+	System.out.println("Enter the minimum number of players here: ");
 	while(!input.hasNextInt() ) {
 		input.nextLine();
 		System.out.print("Enter the minimum number of players here: ");
 	}
+	input.nextLine();
 	int minNumPlayers = input.nextInt();
 	return minNumPlayers;
 }
@@ -211,6 +217,7 @@ public int promptMaxNumPlayers() {
 		input.nextLine();
 		System.out.print("Enter the maximum number of players here: ");
 	}
+
 	int maxNumPlayers = input.nextInt();
 	return maxNumPlayers;
 }
@@ -225,6 +232,7 @@ public String promptDesignerNames() {
 		input.nextLine();
 		System.out.print("Enter designer names here, use ',' to seperate names if there is more than one: ");
 	}
+	input.nextLine();
 	String designerNames = input.nextLine().trim();
 	return designerNames;
 }
@@ -234,6 +242,7 @@ public int promptNumberToPurcahse() {
 		System.out.println("Enter option number to purchase: ");
 		input.nextInt();
 	}
+	input.nextLine();
 	int optionNumber = input.nextInt();
 	return optionNumber;
 }
