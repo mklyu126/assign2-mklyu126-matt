@@ -28,7 +28,7 @@ public class Animals extends Toy {
 	}
 	@Override
 	public String toString() {
-		return super.toString() + "Material: " + material + "Size: " + size;
+		return super.toString() + "Material: " + material + " Size: " + size;
 	}
 	@Override 
 	public String format() {

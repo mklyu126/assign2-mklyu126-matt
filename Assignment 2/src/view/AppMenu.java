@@ -68,13 +68,14 @@ public int showSubMenu() {
   * Validates input.
   * @return user's toy's serial number.
   */
-public int promptSerialNum() {
+public long promptSerialNum() {
 	System.out.println("Enter a serial number here: ");
-	while(!input.hasNextInt()) {
-		input.nextInt();
+	while(!input.hasNextLong()) {
+		input.nextLine();
 		System.out.print("Enter a serial number here: ");
 	}
-	int serialNum = input.nextInt();
+	long serialNum = input.nextLong();
+	
 	input.nextLine();
 	
 	return serialNum;
@@ -90,7 +91,12 @@ public String promptToyBrand() {
 		input.nextLine();
 		System.out.print("Enter the toy brand here: ");
 	}
+	
+	input.nextLine();
+	
 	String toyBrand = input.nextLine().trim();
+	
+	
 	return toyBrand;
 }
 /**
@@ -104,7 +110,11 @@ public String promptToyName() {
 		input.nextLine();
 		System.out.print("Enter a toy name here: ");
 	}
+	input.nextLine();
+	
 	String toyName = input.nextLine().trim();
+	
+	
 	return toyName;
 }
 /**
@@ -118,6 +128,7 @@ public String promptToyType() {
 		input.nextLine();
 		System.out.print("Enter a toy type here: ");
 	}
+	input.nextLine();
 	String toyType = input.nextLine().trim();
 	return toyType;
 }
@@ -182,7 +193,7 @@ public String promptMaximumAge() {
  */
 public int promptMinNumPlayers() {
 	System.out.println("Enter the minimum number of players here");
-	while(!input.hasNextInt()) {
+	while(!input.hasNextInt() ) {
 		input.nextLine();
 		System.out.print("Enter the minimum number of players here: ");
 	}
@@ -216,6 +227,15 @@ public String promptDesignerNames() {
 	}
 	String designerNames = input.nextLine().trim();
 	return designerNames;
+}
+public int promptNumberToPurcahse() {
+	System.out.println("Enter option number to purchase: ");
+	while(!input.hasNextInt()) {
+		System.out.println("Enter option number to purchase: ");
+		input.nextInt();
+	}
+	int optionNumber = input.nextInt();
+	return optionNumber;
 }
 
 }

@@ -18,7 +18,7 @@ public class Puzzles extends Toy {
 	
 	@Override 
 	public String toString() {
-		return super.toString() + "Puzzle Type: " + puzzleType;
+		return super.toString() + " Puzzle Type: " + puzzleType;
 	}
 	
 	@Override 

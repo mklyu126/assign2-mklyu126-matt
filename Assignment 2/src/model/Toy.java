@@ -134,8 +134,8 @@ public long getSerialNum() {
 	 * Shows data in a readable format.
 	 */
 	public String toString() {
-		return "Serial Number: " + serialNum + "Name: " + name + "Brand: " + brand + 
-				"Price:" + price + "Available Count: " + availableCount + "Minimum Age: " + minimumAge;
+		return "Serial Number: " + serialNum + " Name: " + name + " Brand: " + brand + 
+				" Price: " + "$" + price + " Available Count: " + availableCount + " Minimum Age: " + minimumAge;
 	}
 	/**
 	 * Formats the parent toy characteristics
