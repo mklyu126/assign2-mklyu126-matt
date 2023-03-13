@@ -340,7 +340,9 @@ private void searchByToyName(String toyName) {
 				inventory -= 1;
 				tempToys.get(purchaseOption).setAvailableCount(inventory);
 				System.out.println("The Transaction Successfully Purchased \n");
-				System.out.println("Press Enter to continue");
+				System.out.println("Press Enter to continue...");
+				scanner.nextLine();
+				Search();
 				tempToys.clear();
 			}
 			else {
@@ -407,6 +409,9 @@ private void searchBySerialNum(long serialNum) {
 				inventory -= 1;
 				tempToys.get(purchaseOption).setAvailableCount(inventory);
 				System.out.println("The Transaction Successfully Purchased \n");
+				System.out.println("Press Enter to continue...");
+				scanner.nextLine();
+				Search();
 				tempToys.clear();
 			}
 			else {
