@@ -15,7 +15,7 @@ public class Figures extends Toy {
 	 * @param minimumAge of toy.
 	 * @param classification of toy.
 	 */
-	public Figures(long serialNum, String name, String brand, double price, int availableCount, int minimumAge, String classification) {
+	public Figures(String serialNum, String name, String brand, double price, int availableCount, int minimumAge, String classification) {
 		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.classification = classification;
 	}
@@ -51,6 +51,6 @@ public class Figures extends Toy {
 	 */
 	@Override 
 	public String format() {
-		return super.format() + classification;
+		return super.format() + ";" + classification;
 	}
 }
