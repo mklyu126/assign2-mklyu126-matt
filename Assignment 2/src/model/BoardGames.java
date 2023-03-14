@@ -2,7 +2,7 @@ package model;
 
 public class BoardGames extends Toy {
 
-	public BoardGames(long serialNum, String name, String brand, double price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {
+	public BoardGames(String serialNum, String name, String brand, double price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {
 		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.minPlayers = minPlayers;
 		this.maxPlayers = maxPlayers;
@@ -37,6 +37,6 @@ public class BoardGames extends Toy {
 	}
 	@Override 
 	public String format() {
-		return super.format() + minPlayers + maxPlayers + nameDesigners;
+		return super.format() + ";" + minPlayers + "-" + maxPlayers +";" + nameDesigners;
 	}
 }
