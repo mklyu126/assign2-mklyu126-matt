@@ -2,7 +2,7 @@ package model;
 
 public class BoardGames extends Toy {
 
-	public BoardGames(String serialNum, String name, String brand, double price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {
+	public BoardGames(String serialNum, String name, String brand, float price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {
 		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.minPlayers = minPlayers;
 		this.maxPlayers = maxPlayers;

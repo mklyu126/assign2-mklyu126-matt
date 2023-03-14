@@ -6,7 +6,7 @@ package model;
  */
 public class Animals extends Toy {
 
-	public Animals(String serialNum, String name, String brand, double price, int availableCount, int minimumAge, String material, String size) {
+	public Animals(String serialNum, String name, String brand, float price, int availableCount, int minimumAge, String material, String size) {
 		super(serialNum, name, brand, price, availableCount, minimumAge);
 		this.material = material;
 		this.size = size;

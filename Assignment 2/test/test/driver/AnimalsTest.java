@@ -14,11 +14,11 @@ class AnimalsTest {
 	
 	@Test
 	void test_animal_to_String() {
-		Animals animal = new Animals("12345", "Lion", "Hasbro", 14.99, 25, 0, "Polyester", "1 foot");
-		assertEquals(animal.getSerialNum(), 12345);
+		Animals animal = new Animals("12345", "Lion", "Hasbro", (float) 14.99, 25, 0, "Polyester", "1 foot");
+		assertEquals(animal.getSerialNum(), "12345");
 		assertEquals(animal.getName(), "Lion");
 		assertEquals(animal.getBrand(), "Hasbro");
-		assertEquals(animal.getPrice(), 14.99);
+		assertEquals(animal.getPrice(), (float)14.99);
 		assertEquals(animal.getAvailableCount(), 25);
 		assertEquals(animal.getMinimumAge(), 0);
 		assertEquals(animal.getMaterial(), "Polyester");

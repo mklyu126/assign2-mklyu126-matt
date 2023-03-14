@@ -20,7 +20,7 @@ public abstract class Toy {
 	/**
 	 * Represents price of toy.
 	 */
-	private double price;
+	private float price;
 	/**
 	 * Represents available count of toy.
 	 */
@@ -40,7 +40,7 @@ public abstract class Toy {
 	 * @param availableCount of toy.
 	 * @param Minimum age of toy.
 	 */
-public Toy(String serialNum, String name, String brand, double price, int availableCount, int minimumAge) {
+public Toy(String serialNum, String name, String brand, float price, int availableCount, int minimumAge) {
 	this.serialNum = serialNum;
     this.name = name;
 	this.brand = brand;

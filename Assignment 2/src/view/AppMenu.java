@@ -74,12 +74,8 @@ public String promptSerialNum() {
 		input.nextLine();
 		System.out.print("Enter a serial number here: ");
 	}
-	String serialNum = input.nextLong() +"";
-	while (serialNum.length() != 10) {
-		input.nextLine();
-		System.out.println("Serial number must be 10 digits long");
-		System.out.println("Enter a serial number here: ");
-	}
+	String serialNum = input.nextLong()+"";
+	
 	
 	input.nextLine();
 	
@@ -117,7 +113,7 @@ public String promptToyName() {
 //		System.out.print("Enter a toy name here: ");
 //	}
 	
-	input.nextLine();
+	
 	toyName = input.nextLine();
 	
 	
@@ -193,8 +189,8 @@ public String promptClassification() {
 		input.nextLine();
 		System.out.print("Enter the classification of the toy here: ");
 	}
+	input.nextLine();
 	String classification = input.nextLine();
-	
 	return classification;
 }
 /**
@@ -202,14 +198,14 @@ public String promptClassification() {
  * Validates input.
  * @return user's toy's appropriate age range.
  */
-public String promptMinimumAge() {
+public int promptMinimumAge() {
 	System.out.println("Enter the minimum age here : ");
-	while(!input.hasNextLine()) {
+	while(!input.hasNextInt()) {
 		input.nextLine();
 		System.out.print("Enter the minimum age here: ");
 	}
 	
-	String minimumAge = input.nextLine();
+	int minimumAge = input.nextInt();
 	return minimumAge;
 }
 
