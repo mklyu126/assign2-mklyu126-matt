@@ -15,7 +15,7 @@ class PuzzleTest {
 	
 	@Test
 	void test_Puzzle_to_String() {
-		Puzzles puzzle = new Puzzles(12345, "Eiffel Tower", "Hasbro", 14.99, 50, 14, "Trivia");
+		Puzzles puzzle = new Puzzles("12345", "Eiffel Tower", "Hasbro", 14.99, 50, 14, "Trivia");
 		
 		assertEquals(puzzle.getSerialNum(), 12345);
 		assertEquals(puzzle.getName(), "Eiffel Tower");

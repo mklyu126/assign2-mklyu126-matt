@@ -245,7 +245,10 @@ private void searchByType(String toyType) {
 		
 		System.out.println("Here are the search results: ");
 		for (Toy t : tempToys) {
-			System.out.printf("(%d) Category: %s %n", category, t);
+			String toyClass = t.getClass().toString();
+			int indexClass = toyClass.lastIndexOf(".") + 1;
+			String actClass = toyClass.substring(indexClass);
+			System.out.printf("(%d) Category: %s %s %n", category,actClass, t);
 			category += 1;
 		}
 		
@@ -305,11 +308,17 @@ private void searchByToyName(String toyName) {
 	}
 	
 	if (found) {
-				
+
+		
 		category += 1;
+		
 		System.out.println("Here are the search results: ");
 		for (Toy t : tempToys) {
-			System.out.printf("(%d) Category: %s %n", category, t);
+			String toyClass = t.getClass().toString();
+			int indexClass = toyClass.lastIndexOf(".") + 1;
+			String actClass = toyClass.substring(indexClass);
+//			System.out.println(actClass);
+			System.out.printf("(%d) Category: %s %s %n", category, actClass, t);
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
@@ -378,7 +387,10 @@ private void searchBySerialNum(String serialNum) {
 		
 		System.out.println("Here are the search results: ");
 		for (Toy t : tempToys) {
-			System.out.printf("(%d) Category: %s %n", category, t);
+			String toyClass = t.getClass().toString();
+			int indexClass = toyClass.lastIndexOf(".") + 1;
+			String actClass = toyClass.substring(indexClass);
+			System.out.printf("(%d) Category: %s %s %n", category,actClass, t);
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
@@ -436,7 +448,10 @@ private void removeToy(String serialNum) {
 		index += 1;
 		if (Long.parseLong(serialNum) == Long.parseLong(t.getSerialNum())) {
 			System.out.println("This item is found:");
-			System.out.println(t);
+			String toyClass = t.getClass().toString();
+			int indexClass = toyClass.lastIndexOf(".") + 1;
+			String actClass = toyClass.substring(indexClass);
+			System.out.printf("Category: %s %s %n",actClass, t);
 			break;
 		}
 	}
@@ -575,7 +590,10 @@ private void loadData() {
 		
 		fileReader.close();
 //		for (Toy t : toys) {
-//			System.out.println(t.getName());
+//			String toyClass = t.getClass().toString();
+//			int indexClass = toyClass.lastIndexOf(".") + 1;
+//			String actClass = toyClass.substring(indexClass);
+//			System.out.println(actClass);
 //		}
 	
 	}

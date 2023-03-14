@@ -18,7 +18,7 @@ class BoardGameTest {
 	void test_boardGame_to_String() {
 		
 		
-		BoardGames game = new BoardGames(12345, "Monopoly", "Hasbro", 19.99, 30, 8, 1, 6, "Monopoly Man");
+		BoardGames game = new BoardGames("12345", "Monopoly", "Hasbro", 19.99, 30, 8, 1, 6, "Monopoly Man");
 		assertEquals(game.getSerialNum(), 12345);
 		assertEquals(game.getName(), "Monopoly");
 		assertEquals(game.getBrand(), "Hasbro");

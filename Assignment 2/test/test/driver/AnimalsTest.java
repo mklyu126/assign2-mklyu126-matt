@@ -14,7 +14,7 @@ class AnimalsTest {
 	
 	@Test
 	void test_animal_to_String() {
-		Animals animal = new Animals(12345, "Lion", "Hasbro", 14.99, 25, 0, "Polyester", "1 foot");
+		Animals animal = new Animals("12345", "Lion", "Hasbro", 14.99, 25, 0, "Polyester", "1 foot");
 		assertEquals(animal.getSerialNum(), 12345);
 		assertEquals(animal.getName(), "Lion");
 		assertEquals(animal.getBrand(), "Hasbro");

@@ -16,7 +16,7 @@ class FigureTest {
 	
 	@Test
 	void test_Figure_to_String() {
-		Figures figure = new Figures(12345, "Barbie", "Hasbro", 10.99, 40, 10, "Doll");
+		Figures figure = new Figures("12345", "Barbie", "Hasbro", 10.99, 40, 10, "Doll");
 		assertEquals(figure.getSerialNum(), 12345);
 		assertEquals(figure.getName(), "Barbie");
 		assertEquals(figure.getBrand(), "Hasbro");
