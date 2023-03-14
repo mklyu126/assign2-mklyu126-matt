@@ -74,7 +74,7 @@ private void launchApplication() throws NegativeInputPrice {
 				break;
 			case 2:
 				//Store toy details in named variables
-				long serialNum = appMenu.promptSerialNum();
+				String serialNum = appMenu.promptSerialNum();
 				String toyName = appMenu.promptToyName();
 				String toyBrand = appMenu.promptToyBrand();
 				double toyPrice = appMenu.promptToyPrice();
@@ -82,22 +82,20 @@ private void launchApplication() throws NegativeInputPrice {
 				String minimumAge = appMenu.promptMinimumAge();
 				String maximumAge = appMenu.promptMaximumAge();
 				String ageRange = minimumAge +"-" + maximumAge;
-				int minNumPlayers = appMenu.promptMinNumPlayers();
-				int maxNumPlayers = appMenu.promptMaxNumPlayers();
-				String designerNames = appMenu.promptDesignerNames();
-
+				
 				
 				try { //problem code in try block, if any exceptions are met > moves into catch block.
-					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange, minNumPlayers, maxNumPlayers, designerNames);
+					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange);
 				} catch (Exception e) {
 					System.out.println("Error: ");
 					e.printStackTrace();
 				}
-				
+				break;
 			case 3:
 				
 				serialNum = appMenu.promptSerialNum(); //Prompts user for serial number, finds toy and removes it.
 				removeToy(serialNum);
+				break;
 			case 4:
 				Save(); //Saves back into toys.txt file.
 				flag = false;
@@ -117,22 +115,18 @@ private void Search() {
 	
 	switch(option) { //Switch/case based upon user choice (integers between 1 and 4)
 	case 1:
-		long serialNum = appMenu.promptSerialNum();
+		String serialNum = appMenu.promptSerialNum();
+		
 		searchBySerialNum(serialNum);
 		break;
 	case 2:
 		String toyName;
-		do {
-			toyName = appMenu.promptToyName();
-		}while(toyName.isEmpty());
-
+		toyName = appMenu.promptToyName();
 		searchByToyName(toyName);
 		break;
 	case 3:
 		String toyType;
-		do {
-			toyType = appMenu.promptToyType();
-		}while(toyType.isEmpty());
+		toyType = appMenu.promptToyType();
 		
 		searchByType(toyType);
 		break;
@@ -187,7 +181,7 @@ private void searchByType(String toyType) {
 	if (toyType.toLowerCase().contains("figures")) {
 		for(Toy t: toys) {
 			
-			String firstDigitTostring = Long.toString(t.getSerialNum());
+			String firstDigitTostring = t.getSerialNum();
 			char getfirstDigit = firstDigitTostring.charAt(0);
 			long firstDigitToLong = Character.getNumericValue(getfirstDigit);
 			
@@ -201,7 +195,7 @@ private void searchByType(String toyType) {
 	else if (toyType.toLowerCase().contains("animals")) {
 		for(Toy t: toys) {
 			
-			String firstDigitTostring = Long.toString(t.getSerialNum());
+			String firstDigitTostring = t.getSerialNum();
 			char getfirstDigit = firstDigitTostring.charAt(0);
 			long firstDigitToLong = Character.getNumericValue(getfirstDigit);
 			
@@ -215,7 +209,7 @@ private void searchByType(String toyType) {
 	else if (toyType.toLowerCase().contains("puzzles")) {
 		for(Toy t: toys) {
 			
-			String firstDigitTostring = Long.toString(t.getSerialNum());
+			String firstDigitTostring = t.getSerialNum();
 			char getfirstDigit = firstDigitTostring.charAt(0);
 			long firstDigitToLong = Character.getNumericValue(getfirstDigit);
 			
@@ -229,7 +223,7 @@ private void searchByType(String toyType) {
 	else if (toyType.toLowerCase().contains("board games")) {
 		for(Toy t: toys) {
 			
-			String firstDigitTostring = Long.toString(t.getSerialNum());
+			String firstDigitTostring = t.getSerialNum();
 			char getfirstDigit = firstDigitTostring.charAt(0);
 			long firstDigitToLong = Character.getNumericValue(getfirstDigit);
 			
@@ -257,7 +251,7 @@ private void searchByType(String toyType) {
 		
 
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 
 //		System.out.println("Inventory before " + tempToys.get(purchaseOption).getAvailableCount());
 
@@ -319,7 +313,7 @@ private void searchByToyName(String toyName) {
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 		
 
 		
@@ -360,7 +354,7 @@ private void searchByToyName(String toyName) {
 
 
 
-private void searchBySerialNum(long serialNum) {
+private void searchBySerialNum(String serialNum) {
 	int category = -1;
 	int inventory;
 	
@@ -372,7 +366,7 @@ private void searchBySerialNum(long serialNum) {
 	
 	
 	for(Toy t :toys) {
-		if (serialNum == t.getSerialNum()) {
+		if (Long.parseLong(serialNum) == Long.parseLong(t.getSerialNum())) {
 			found = true;
 			tempToys.add(t);
 
@@ -388,7 +382,7 @@ private void searchBySerialNum(long serialNum) {
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 		
 
 		
@@ -434,22 +428,79 @@ private void searchBySerialNum(long serialNum) {
 
 
 
-private void removeToy(long serialNum) {
-	// TODO Auto-generated method stub
-	
+private void removeToy(String serialNum) {
+
+	int index = -1;
+
+	for (Toy t : toys) {
+		index += 1;
+		if (Long.parseLong(serialNum) == Long.parseLong(t.getSerialNum())) {
+			System.out.println("This item is found:");
+			System.out.println(t);
+			break;
+		}
+	}
+	String answer = appMenu.promptYesandNo();
+	if (answer.equalsIgnoreCase("y")) {
+        System.out.println("Item Removed!");
+        toys.remove(index);
+        System.out.println("Press Enter to continue");
+		scanner.nextLine();
+
+	}
+	else{
+		Search();
+	}
+
 }
 
 
 
 
+
 private void addNewToy
-(long serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
-String ageRange, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
+(String serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
+String ageRange) throws Exception 
 {
 	if (toyPrice < 0) //If statements to catch exceptions that may occur
-		throw new NegativeInputPrice();
-	if (minNumPlayers > maxNumPlayers)
+		throw new NegativeInputPrice();	
+	if (ageRange.charAt(0) > ageRange.charAt(1))
 		throw new TooManyMinNumPlayers();
+	
+	String serialNumString;
+	serialNumString = serialNum +"";
+	int minimumAge =ageRange.charAt(0);
+	
+	
+	char firstDigit = serialNumString.charAt(0);
+	int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
+	
+	if (firstDigitInt == 0 || firstDigitInt == 1) {
+		String classification = appMenu.promptClassification();
+		Figures f = new Figures(serialNumString.trim(), toyName, toyBrand, toyPrice, availableCount, minimumAge, classification );
+		toys.add(f);
+	}
+	if (firstDigitInt == 2 || firstDigitInt == 3) {
+		String material = appMenu.promptMaterial();
+		String size = appMenu.promptSize();
+		Animals a = new Animals(serialNumString.trim(), toyName, toyBrand, toyPrice, availableCount, minimumAge, material, size );
+		toys.add(a);
+	}
+	if (firstDigitInt == 4 || firstDigitInt == 5 || firstDigitInt == 6) {
+		String puzzleType = appMenu.promptPuzzleType();
+		Puzzles p = new Puzzles(serialNumString.trim(), toyName, toyBrand, toyPrice, availableCount, minimumAge, puzzleType );
+		toys.add(p);
+	}
+	if (firstDigitInt == 7 || firstDigitInt == 8 || firstDigitInt == 9) {
+		int minNumPlayers = appMenu.promptMinNumPlayers();
+		int maxNumPlayers = appMenu.promptMaxNumPlayers();
+		if (minNumPlayers > maxNumPlayers)
+			throw new TooManyMinNumPlayers();
+		String designerNames = appMenu.promptDesignerNames();
+		BoardGames g = new BoardGames(serialNumString.trim(), toyName, toyBrand, toyPrice, availableCount, minimumAge, minNumPlayers, maxNumPlayers, designerNames );
+		toys.add(g);
+	}
+	
 	
 }
 
@@ -469,7 +520,7 @@ private void loadData() {
 		Scanner fileReader = null;
 		try {
 			
-			fileReader = new Scanner(db);//If file is not found, system goes into the filenotfoundexception and prints to the user.
+			fileReader = new Scanner(db);//If file is not found, system goes into the fil5enotfoundexception and prints to the user.
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found");
 			e.printStackTrace();
@@ -479,6 +530,8 @@ private void loadData() {
 			
 			currentLine = fileReader.nextLine();
 			splittedLine = currentLine.split(";");
+			
+			
 			String serialNum = (splittedLine[0].trim());
 			
 			char firstDigit = serialNum.charAt(0);
@@ -486,20 +539,20 @@ private void loadData() {
 			
 			
 			if (firstDigitInt == 0 || firstDigitInt == 1) {
-				Figures f = new Figures(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Figures f = new Figures(splittedLine[0].trim(), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(f);
 				
 			}
 			
 			else if (firstDigitInt == 2 || firstDigitInt == 3){
-				Animals a = new Animals(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Animals a = new Animals(splittedLine[0].trim(), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip(), splittedLine[7].strip());
 				toys.add(a);
 			}
 			
 			else if (firstDigitInt == 4 || firstDigitInt == 5 || firstDigitInt == 6) {
-				Puzzles p = new Puzzles(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				Puzzles p = new Puzzles(splittedLine[0].trim(), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), splittedLine[6].strip());
 				toys.add(p);
 			}
@@ -512,18 +565,18 @@ private void loadData() {
 				
 
 				
-				BoardGames b = new BoardGames(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
+				BoardGames b = new BoardGames(splittedLine[0].trim(), splittedLine[1].strip(), splittedLine[2].strip(),
 				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]),minAge, maxAge, splittedLine[7].strip());
 				toys.add(b);
 			}
 			
-			
+		
 		}
 		
 		fileReader.close();
-		// if serialNum starts with 0 or 1 -> load into figures object
-
-
+//		for (Toy t : toys) {
+//			System.out.println(t.getName());
+//		}
 	
 	}
 	
