@@ -142,7 +142,7 @@ public long getSerialNum() {
 	 * @return parent toy characteristics
 	 */
 	public String format() {
-		return serialNum + ";" + name + ";" + brand + ";" + price +";" + availableCount + ";" + minimumAge;
+		return serialNum + ";" + name + ";" + brand + ";" + price + ";" + availableCount + ";" + minimumAge;
 	}
 	
 	

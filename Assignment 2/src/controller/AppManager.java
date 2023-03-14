@@ -79,14 +79,13 @@ private void launchApplication() throws NegativeInputPrice {
 				String toyBrand = appMenu.promptToyBrand();
 				double toyPrice = appMenu.promptToyPrice();
 				int availableCount = appMenu.promptNumAvailable();
-				String minimumAge = appMenu.promptMinimumAge();
-				String maximumAge = appMenu.promptMaximumAge();
-				String ageRange = minimumAge +"-" + maximumAge;
+				int minimumAge = appMenu.promptMinimumAge();
+				
 				
 				
 				
 				try { //problem code in try block, if any exceptions are met > moves into catch block.
-					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange);
+					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, minimumAge);
 				} catch (Exception e) {
 					System.out.println("Error: ");
 					e.printStackTrace();
@@ -443,18 +442,14 @@ private void removeToy(long serialNum) {
 
 private void addNewToy
 (long serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
-String ageRange) throws Exception 
+int minimumAge) throws Exception 
 {
 	if (toyPrice < 0) //If statements to catch exceptions that may occur
 		throw new NegativeInputPrice();	
-	if (ageRange.charAt(0) > ageRange.charAt(1))
-		throw new TooManyMinNumPlayers();
+
 	
 	String serialNumString;
 	serialNumString = serialNum +"";
-	int minimumAge =ageRange.charAt(0);
-	
-	
 	char firstDigit = serialNumString.charAt(0);
 	int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
 	
@@ -541,13 +536,13 @@ private void loadData() {
 			else if (firstDigitInt == 7 || firstDigitInt == 8 || firstDigitInt == 9) {
 
 				String [] minMaxPlayers = splittedLine[6].split("-");
-				int minAge = Integer.parseInt(minMaxPlayers[0]);
-				int maxAge = Integer.parseInt(minMaxPlayers[1]);
+				int minNumPlayers = Integer.parseInt(minMaxPlayers[0]);
+				int maxNumPlayers = Integer.parseInt(minMaxPlayers[1]);
 				
 
 				
 				BoardGames b = new BoardGames(Long.parseLong(splittedLine[0]), splittedLine[1].strip(), splittedLine[2].strip(),
-				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]),minAge, maxAge, splittedLine[7].strip());
+				Double.parseDouble(splittedLine[3]), Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]),minNumPlayers, maxNumPlayers, splittedLine[7].strip());
 				toys.add(b);
 			}
 			
