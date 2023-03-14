@@ -82,18 +82,16 @@ private void launchApplication() throws NegativeInputPrice {
 				String minimumAge = appMenu.promptMinimumAge();
 				String maximumAge = appMenu.promptMaximumAge();
 				String ageRange = minimumAge +"-" + maximumAge;
-				int minNumPlayers = appMenu.promptMinNumPlayers();
-				int maxNumPlayers = appMenu.promptMaxNumPlayers();
-				String designerNames = appMenu.promptDesignerNames();
-
+				
+				
 				
 				try { //problem code in try block, if any exceptions are met > moves into catch block.
-					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange, minNumPlayers, maxNumPlayers, designerNames);
+					addNewToy(serialNum, toyName, toyBrand, toyPrice, availableCount, ageRange);
 				} catch (Exception e) {
 					System.out.println("Error: ");
 					e.printStackTrace();
 				}
-				
+				break;
 			case 3:
 				
 				serialNum = appMenu.promptSerialNum(); //Prompts user for serial number, finds toy and removes it.
@@ -257,7 +255,7 @@ private void searchByType(String toyType) {
 		
 
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 
 //		System.out.println("Inventory before " + tempToys.get(purchaseOption).getAvailableCount());
 
@@ -319,7 +317,7 @@ private void searchByToyName(String toyName) {
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 		
 
 		
@@ -388,7 +386,7 @@ private void searchBySerialNum(long serialNum) {
 			category += 1;
 		}
 		System.out.printf("(%d) Back to Menu %n", category);
-		int purchaseOption = appMenu.promptNumberToPurcahse();
+		int purchaseOption = appMenu.promptNumberToPurchase();
 		
 
 		
@@ -442,14 +440,50 @@ private void removeToy(long serialNum) {
 
 
 
+
 private void addNewToy
 (long serialNum, String toyName, String toyBrand, double toyPrice, int availableCount, 
-String ageRange, int minNumPlayers, int maxNumPlayers, String designerNames) throws Exception 
+String ageRange) throws Exception 
 {
 	if (toyPrice < 0) //If statements to catch exceptions that may occur
-		throw new NegativeInputPrice();
-	if (minNumPlayers > maxNumPlayers)
+		throw new NegativeInputPrice();	
+	if (ageRange.charAt(0) > ageRange.charAt(1))
 		throw new TooManyMinNumPlayers();
+	
+	String serialNumString;
+	serialNumString = serialNum +"";
+	int minimumAge =ageRange.charAt(0);
+	
+	
+	char firstDigit = serialNumString.charAt(0);
+	int firstDigitInt = Integer.parseInt(String.valueOf(firstDigit));
+	
+	if (firstDigitInt == 0 || firstDigitInt == 1) {
+		String classification = appMenu.promptClassification();
+		Figures f = new Figures(Long.parseLong(serialNumString), toyName, toyBrand, toyPrice, availableCount, minimumAge, classification );
+		toys.add(f);
+	}
+	if (firstDigitInt == 2 || firstDigitInt == 3) {
+		String material = appMenu.promptMaterial();
+		String size = appMenu.promptSize();
+		Animals a = new Animals(Long.parseLong(serialNumString), toyName, toyBrand, toyPrice, availableCount, minimumAge, material, size );
+		toys.add(a);
+	}
+	if (firstDigitInt == 4 || firstDigitInt == 5 || firstDigitInt == 6) {
+		String puzzleType = appMenu.promptPuzzleType();
+		Puzzles p = new Puzzles(Long.parseLong(serialNumString), toyName, toyBrand, toyPrice, availableCount, minimumAge, puzzleType );
+		toys.add(p);
+	}
+	if (firstDigitInt == 7 || firstDigitInt == 8 || firstDigitInt == 9) {
+		int minNumPlayers = appMenu.promptMinNumPlayers();
+		int maxNumPlayers = appMenu.promptMaxNumPlayers();
+		if (minNumPlayers > maxNumPlayers)
+			throw new TooManyMinNumPlayers();
+		String designerNames = appMenu.promptDesignerNames();
+		BoardGames g = new BoardGames(Long.parseLong(serialNumString), toyName, toyBrand, toyPrice, availableCount, minimumAge, minNumPlayers, maxNumPlayers, designerNames );
+		toys.add(g);
+	}
+	
 	
 }
 
@@ -469,7 +503,7 @@ private void loadData() {
 		Scanner fileReader = null;
 		try {
 			
-			fileReader = new Scanner(db);//If file is not found, system goes into the filenotfoundexception and prints to the user.
+			fileReader = new Scanner(db);//If file is not found, system goes into the fil5enotfoundexception and prints to the user.
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found");
 			e.printStackTrace();
@@ -521,7 +555,7 @@ private void loadData() {
 		}
 		
 		fileReader.close();
-		// if serialNum starts with 0 or 1 -> load into figures object
+		
 
 
 	

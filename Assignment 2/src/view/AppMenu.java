@@ -74,11 +74,16 @@ public long promptSerialNum() {
 		input.nextLine();
 		System.out.print("Enter a serial number here: ");
 	}
-	long serialNum = input.nextLong();
+	String serialNum = input.nextLong() +"";
+	while (serialNum.length() != 10) {
+		input.nextLine();
+		System.out.println("Serial number must be 10 digits long");
+		System.out.println("Enter a serial number here: ");
+	}
 	
 	input.nextLine();
 	
-	return serialNum;
+	return Long.parseLong(serialNum);
 }
 /**
  * Prompts user for brand of toy.
@@ -92,9 +97,9 @@ public String promptToyBrand() {
 		System.out.print("Enter the toy brand here: ");
 	}
 	
-	input.nextLine();
 	
 	String toyBrand = input.nextLine().trim();
+	
 	
 	
 	return toyBrand;
@@ -110,9 +115,9 @@ public String promptToyName() {
 		input.nextLine();
 		System.out.print("Enter a toy name here: ");
 	}
-	input.nextLine();
 	
 	String toyName = input.nextLine().trim();
+	
 	
 	
 	return toyName;
@@ -128,8 +133,8 @@ public String promptToyType() {
 		input.nextLine();
 		System.out.print("Enter a toy type here: ");
 	}
-	input.nextLine();
 	String toyType = input.nextLine().trim();
+	input.nextLine();
 	return toyType;
 }
 /**
@@ -148,6 +153,9 @@ public double promptToyPrice() throws NegativeInputPrice {
 	double toyPrice = input.nextDouble();
 	if (toyPrice < 0)
 		throw new NegativeInputPrice();
+
+	
+	
 	return toyPrice;
 }
 /**
@@ -161,9 +169,19 @@ public int promptNumAvailable() {
 		input.nextLine();
 		System.out.print("Enter the available count here: ");
 	}
-	input.nextLine();
 	int numAvailable = input.nextInt();
+	input.nextLine();
 	return numAvailable;
+}
+public String promptClassification() {
+	System.out.println("Enter classification of the toy here");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter the classification of the toy here: ");
+	}
+	String classification = input.nextLine();
+	
+	return classification;
 }
 /**
  * Prompts user for the appropriate age range of their toy.
@@ -176,7 +194,7 @@ public String promptMinimumAge() {
 		input.nextLine();
 		System.out.print("Enter the minimum age here: ");
 	}
-	input.nextLine();
+	
 	String minimumAge = input.nextLine();
 	return minimumAge;
 }
@@ -187,8 +205,8 @@ public String promptMaximumAge() {
 		input.nextLine();
 		System.out.print("Enter the maximum age here: ");
 	}
-	input.nextLine();
 	String maximumAge = input.nextLine();
+	
 	return maximumAge;
 }
 /**
@@ -202,8 +220,8 @@ public int promptMinNumPlayers() {
 		input.nextLine();
 		System.out.print("Enter the minimum number of players here: ");
 	}
-	input.nextLine();
 	int minNumPlayers = input.nextInt();
+	
 	return minNumPlayers;
 }
 /**
@@ -219,6 +237,7 @@ public int promptMaxNumPlayers() {
 	}
 
 	int maxNumPlayers = input.nextInt();
+	
 	return maxNumPlayers;
 }
 /**
@@ -236,16 +255,50 @@ public String promptDesignerNames() {
 	String designerNames = input.nextLine().trim();
 	return designerNames;
 }
-public int promptNumberToPurcahse() {
+public int promptNumberToPurchase() {
 	System.out.println("Enter option number to purchase: ");
 	while(!input.hasNextInt()) {
 		System.out.println("Enter option number to purchase: ");
 		input.nextInt();
 	}
-	input.nextLine();
 	int optionNumber = input.nextInt();
+	
 	return optionNumber;
+}
+public String promptMaterial() {
+	System.out.println("Enter material of the toy here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter material of the toy here: ");
+	}
+	input.nextLine();
+	String material = input.nextLine().trim();
+	
+	return material;
+}
+public String promptSize() {
+	System.out.println("Enter size of the toy here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter size of the toy here: ");
+	}
+	input.nextLine();
+	String size = input.nextLine().trim();
+	
+	return size;
+}
+public String promptPuzzleType() {
+	System.out.println("Enter puzzle type of the toy here: ");
+	while(!input.hasNextLine()) {
+		input.nextLine();
+		System.out.print("Enter puzzle type of the toy here: ");
+	}
+	input.nextLine();
+	String puzzleType = input.nextLine().trim();
+	
+	return puzzleType;
 }
 
 }
+
 

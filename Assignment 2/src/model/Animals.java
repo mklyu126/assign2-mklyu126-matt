@@ -32,6 +32,6 @@ public class Animals extends Toy {
 	}
 	@Override 
 	public String format() {
-		return super.format() + material + size;
+		return super.format() + ";" + material + ";" + size;
 	}
 }

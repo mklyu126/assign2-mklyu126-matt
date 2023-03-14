@@ -23,7 +23,7 @@ public class Puzzles extends Toy {
 	
 	@Override 
 	public String format() {
-		return super.format() + puzzleType;
+		return super.format() + ";" + puzzleType;
 	}
 	
 

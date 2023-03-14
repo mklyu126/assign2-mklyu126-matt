@@ -37,6 +37,6 @@ public class BoardGames extends Toy {
 	}
 	@Override 
 	public String format() {
-		return super.format() + minPlayers + maxPlayers + nameDesigners;
+		return super.format() + ";" + minPlayers + ";" + maxPlayers +";" + nameDesigners;
 	}
 }

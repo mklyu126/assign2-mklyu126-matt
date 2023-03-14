@@ -51,6 +51,6 @@ public class Figures extends Toy {
 	 */
 	@Override 
 	public String format() {
-		return super.format() + classification;
+		return super.format() + ";" + classification;
 	}
 }
