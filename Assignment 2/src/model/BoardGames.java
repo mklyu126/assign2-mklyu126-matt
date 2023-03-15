@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * This class has the classification of a board game
+ * @author Max
+ *
+ */
 public class BoardGames extends Toy {
 
 	public BoardGames(String serialNum, String name, String brand, float price, int availableCount, int minimumAge, int minPlayers, int maxPlayers, String nameDesigners) {

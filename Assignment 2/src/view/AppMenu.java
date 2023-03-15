@@ -11,7 +11,9 @@ import exceptions.NegativeInputPrice;
 public class AppMenu {
 Scanner input;
 
-
+/**
+ * starts up the user input 
+ */
 public AppMenu() {
 	input = new Scanner(System.in);
 }
@@ -135,6 +137,10 @@ public String promptToyType() {
 	return toyType;
 }
 
+/**
+ * asks the user if they want to remove the item
+ * @return y string or n string
+ */
 public String promptYesandNo() {
 	System.out.println("Do you want to remove it (Y/N)? ");
 	
@@ -183,6 +189,10 @@ public int promptNumAvailable() {
 	input.nextLine();
 	return numAvailable;
 }
+/**
+ * asks the user the classification of toy 
+ * @return classification of toy
+ */
 public String promptClassification() {
 	System.out.println("Enter classification of the toy here");
 	while(!input.hasNextLine()) {
@@ -208,7 +218,10 @@ public int promptMinimumAge() {
 	int minimumAge = input.nextInt();
 	return minimumAge;
 }
-
+/**
+ * asks user the maximum age
+ * @return maximum age
+ */
 public String promptMaximumAge() {
 	System.out.println("Enter the maximum age here : ");
 	while(!input.hasNextLine()) {
@@ -265,6 +278,10 @@ public String promptDesignerNames() {
 	String designerNames = input.nextLine().trim();
 	return designerNames;
 }
+/**
+ * This menu asks what option user select to buy an item
+ * @return users option
+ */
 public int promptNumberToPurchase() {
 	System.out.println("Enter option number to purchase: ");
 	while(!input.hasNextInt()) {
@@ -275,6 +292,10 @@ public int promptNumberToPurchase() {
 	
 	return optionNumber;
 }
+/**
+ * this prompt asks the user what material of the toy
+ * @return material of toy 
+ */
 public String promptMaterial() {
 	System.out.println("Enter material of the toy here: ");
 	while(!input.hasNextLine()) {
@@ -286,6 +307,10 @@ public String promptMaterial() {
 	
 	return material;
 }
+/**
+ * Asks user what the size of the toy
+ * @return size of toy
+ */
 public String promptSize() {
 	System.out.println("Enter size of the toy here: ");
 	while(!input.hasNextLine()) {
@@ -297,6 +322,11 @@ public String promptSize() {
 	
 	return size;
 }
+
+/**
+ * asks user what puzzle type the toy is 
+ * @return puzzle type
+ */
 public String promptPuzzleType() {
 	System.out.println("Enter puzzle type of the toy here: ");
 	while(!input.hasNextLine()) {

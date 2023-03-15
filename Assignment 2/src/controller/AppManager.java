@@ -168,7 +168,10 @@ private void Save(){
 
 
 
-
+/**
+ * takes in users input and searches for the toy
+ * @param toyType
+ */
 private void searchByType(String toyType) {
 	int category = -1;
 	int inventory;
@@ -286,7 +289,10 @@ private void searchByType(String toyType) {
 
 
 
-
+/**
+ * takes in userinput and look up the toy the user asks for 
+ * @param toyName
+ */
 private void searchByToyName(String toyName) {
 	int category = -1;
 	int inventory;
@@ -361,7 +367,10 @@ private void searchByToyName(String toyName) {
 
 
 
-
+/**
+ * takes ina serial number the user input and find toy that matches the serial number
+ * @param serialNum
+ */
 private void searchBySerialNum(String serialNum) {
 	int category = -1;
 	int inventory;
@@ -438,7 +447,10 @@ private void searchBySerialNum(String serialNum) {
 
 
 
-
+/**
+ * takes in serial number from user find the serial number that matches and asks the user if they want to remove the toy
+ * @param serialNum
+ */
 private void removeToy(String serialNum) {
 
 	int index = -1;
@@ -471,7 +483,16 @@ private void removeToy(String serialNum) {
 
 
 
-
+/**
+ * takes in serial number, toy name, brand, price, available count, and age then it formats and create a new two
+ * @param serialNum
+ * @param toyName
+ * @param toyBrand
+ * @param toyPrice
+ * @param availableCount
+ * @param minimumAge
+ * @throws Exception
+ */
 private void addNewToy
 (String serialNum, String toyName, String toyBrand, float toyPrice, int availableCount, 
 int minimumAge) throws Exception 
