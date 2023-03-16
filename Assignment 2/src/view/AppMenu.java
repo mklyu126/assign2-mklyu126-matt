@@ -115,9 +115,9 @@ public String promptToyName() {
 //		System.out.print("Enter a toy name here: ");
 //	}
 	
-	
+	input.nextLine();
 	toyName = input.nextLine();
-	
+
 	
 	return toyName;
 }
